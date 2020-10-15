@@ -74,27 +74,6 @@ class SpinnerHandler {
         $(`#option-add-holder`).click(() => this.addOption());
     }
 
-    getSelection() {
-        let dir = (this.rotation.dir + 0.5 * Math.PI) % (2 * Math.PI);
-        let totalWeight = 0;
-        this.options.forEach(o => {
-            totalWeight += o.weight;
-        });
-        let radPerWeight = Math.PI * 2 / totalWeight;
-        let totalSteps = dir/radPerWeight;
-        for(let i = 0; i < this.options.length; i++) {
-            let o = this.options[i];
-            totalSteps -= o.weight;
-            if(totalSteps <= 0) {
-                return {
-                    isStopped:  this.rotation.vel <= 0,
-                    velocity: this.rotation.vel,
-                    option: o
-                }
-            }
-        }
-    }
-    
 }
 
 
@@ -116,9 +95,9 @@ const WeightFix = {
             newValue = 1;
         }
         newValue = parseInt(newValue);
-        if(newValue > 100) {
+        if(newValue >= 100) {
             newValue = 100;
-        } else if(newValue < 1) {
+        } else if(newValue <= 1) {
             newValue = 1;
         }
         element.value = newValue;
