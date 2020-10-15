@@ -1,5 +1,9 @@
 class Painter {
 
+    constructor() {
+       
+    }
+
     paint(frame, cw, spinner) {
         cw.clear();
         let circle = this.getSpinnerCircle(cw.getBoundingRect());
@@ -10,6 +14,7 @@ class Painter {
             cw.drawPolygon(s.body, s.color, '#333', 3);
         })
         this.drawPointer(cw);
+        this.drawSelection(cw, spinner);
     }
 
     getSpinnerCircle(rect) {
@@ -71,6 +76,20 @@ class Painter {
         pointer.add(rect.width/2 + 20, 2);
         pointer.add(rect.width/2, 30);
         cw.drawPolygon(pointer, '#666', '#333', 3);
+    }
+
+    drawSelection(cw, spinner) {
+        let sel = spinner.getSelection();
+        if(sel.isStopped || true) {
+            let brect = cw.getBoundingRect();
+            let rect = new Gmt.Rectangle(60, 60, brect.width - 120 , 100);
+            let bgColor = Gmt.rgba(255, 255, 255, sel.velocity < 0.1 ? 0.7 - 7 * sel.velocity : 0);
+            let borderColor = Gmt.rgba(100, 100, 100, sel.velocity < 0.1 ? 0.7 - 7 * sel.velocity : 0);
+            let txtColor = Gmt.rgba(0, 0, 0, sel.velocity < 0.1 ? 1 - 10 * sel.velocity : 0);
+            cw.drawRect(rect, bgColor, borderColor, 3);
+            let text = sel.option.name;
+            cw.write(text, 70, 140, txtColor, 80);
+        }
     }
 
 }

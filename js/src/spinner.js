@@ -75,8 +75,24 @@ class SpinnerHandler {
     }
 
     getSelection() {
-        let dir = this.rotation.dir % (2 * Math.PI);
-        let isStopped = this.rotation.vel <= 0;
+        let dir = (this.rotation.dir + 0.5 * Math.PI) % (2 * Math.PI);
+        let totalWeight = 0;
+        this.options.forEach(o => {
+            totalWeight += o.weight;
+        });
+        let radPerWeight = Math.PI * 2 / totalWeight;
+        let totalSteps = dir/radPerWeight;
+        for(let i = 0; i < this.options.length; i++) {
+            let o = this.options[i];
+            totalSteps -= o.weight;
+            if(totalSteps <= 0) {
+                return {
+                    isStopped:  this.rotation.vel <= 0,
+                    velocity: this.rotation.vel,
+                    option: o
+                }
+            }
+        }
     }
     
 }
