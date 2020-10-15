@@ -20,7 +20,7 @@ class SpinnerHandler {
     }
 
     spin() {
-        this.rotation.vel = 0.3;
+        this.rotation.vel = Gmt.randFloat(0.27, 0.38);
     }
 
     _generateDefault() {
@@ -72,6 +72,11 @@ class SpinnerHandler {
             </div>
         `);
         $(`#option-add-holder`).click(() => this.addOption());
+    }
+
+    getSelection() {
+        let dir = this.rotation.dir % (2 * Math.PI);
+        let isStopped = this.rotation.vel <= 0;
     }
     
 }

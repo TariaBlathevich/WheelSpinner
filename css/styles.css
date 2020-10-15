@@ -2,11 +2,6 @@
     width: 100%;
     height: 50%;
     cursor: pointer;
-    transition-duration: 300ms;
-}
-
-#canvas-home *:hover {
-    filter: brightness(1.3);
 }
 
 #options-home {
@@ -29,12 +24,12 @@
     margin: 1px;
     border: none;
     border-radius: 3px;
-    height: 30px;
+    height: 4vh;
+    font-size: 3vh;
     text-align: center;
     padding: 2px;
     cursor: pointer;
     transition-duration: 300ms;
-    font-size: 26px;
 }
 
 .option-body *:hover {
@@ -46,20 +41,20 @@
 }
 
 .option-weight-holder {
-    width: 25%;
+    width: 20%;
 }
 
 .option-color-holder {
-    width: calc(25% - 66px);
+    width: 20%;
 }
 
 .option-delete-holder {
-    height: 34px;
-    width: 34px;
+    width: calc(10% - 40px);
+    height: 4.3vh;
 }
 
 .option-add-holder {
-    width: 100%;
+    width: calc(100% - 10px);
 }
 
 
