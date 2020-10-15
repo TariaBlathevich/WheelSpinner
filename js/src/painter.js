@@ -7,7 +7,7 @@ class Painter {
         let polygon = circle.toPolygon(wInfo.totalWeight * wInfo.multiplier, spinner.rotation.dir);
         let slices = this.slicePolygon(circle, wInfo, polygon, spinner.options);
         slices.forEach(s => {
-            cw.drawPolygon(s.body, s.color, '#111', 3);
+            cw.drawPolygon(s.body, s.color, '#333', 3);
         })
         this.drawPointer(cw);
     }
@@ -70,7 +70,7 @@ class Painter {
         pointer.add(rect.width/2 - 20, 2);
         pointer.add(rect.width/2 + 20, 2);
         pointer.add(rect.width/2, 30);
-        cw.drawPolygon(pointer, '#444', '#222', 3);
+        cw.drawPolygon(pointer, '#666', '#333', 3);
     }
 
 }

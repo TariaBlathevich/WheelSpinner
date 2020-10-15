@@ -26,6 +26,8 @@
     border-radius: 3px;
     height: 4vh;
     font-size: 3vh;
+    font-weight: bold;
+    color: #ddd;
     text-align: center;
     padding: 2px;
     cursor: pointer;
@@ -56,40 +58,3 @@
 .option-add-holder {
     width: calc(100% - 10px);
 }
-
-
-
-
-/***
-
-
-
-
-    _renderOneOption(option, index) {
-        $(this.homeId).append(`
-            <div id='option-body-${index}' class='option-body'>
-                <input type='text' value='${option.name}' class='option-name-holder' id='option-name-holder-${index}'/>
-                <input type='number' min='0' max='100' value='${option.weight}' class='option-weight-holder' id='option-weight-holder-${index}'/>
-                <input type='color' value='${option.color}' class='option-color-holder' id='option-color-holder-${index}'/>
-                <input type='button' value='X' class='option-delete-holder' id='option-delete-holder-${index}'/>
-            </div>
-        `);
-        $(`#option-name-holder-${index}`).change(() => {option.name = $(`#option-name-holder-${index}`).val()});
-        $(`#option-weight-holder-${index}`).change(() => {option.weight = $(`#option-weight-holder-${index}`).val()});
-        $(`#option-color-holder-${index}`).change(() => {option.color = $(`#option-color-holder-${index}`).val()});
-        $(`#option-delete-holder-${index}`).click(() => this.deleteOption(index));
-    }
-
-    _renderAddButton() {
-        $(this.homeId).append(`
-            <div id='option-body-next' class='option-body'>
-                <input type='button' value='ADD' class='option-add-holder' id='option-add-holder'/>
-            </div>
-        `);
-        $(`#option-add-holder`).click(() => this.addOption());
-    }
-
-
-
-
-****/
