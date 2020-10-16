@@ -6,8 +6,10 @@ class Painter {
         let wInfo = this.getWeightInfo(spinner.options);
         let polygon = circle.toPolygon(wInfo.totalWeight * wInfo.multiplier, spinner.rotation.dir);
         let slices = this.slicePolygon(circle, wInfo, polygon, spinner.options);
+        let painter = this;
         slices.forEach(s => {
             cw.drawPolygon(s.body, s.color, '#333', 3);
+            painter.writeOptionText(cw, s);
         })
         this.drawPointer(cw);
     }
@@ -62,6 +64,20 @@ class Painter {
             }
         }
         return slices;
+    }
+
+    writeOptionText(cw, slice) {
+        let ver1 = slice.body.toVertices()[0];
+        let ver2 = slice.body.toVertices()[1];
+        let dir = this._dirToVertex(ver1, ver2);
+        let targetVer = ver2.copy();
+        targetVer.movePolar(10, dir - Math.PI * 0.3)
+        cw.write(slice.name, targetVer.x + 1, targetVer.y + 1, 'white', 30, 'Arial', dir, 0.7);
+        cw.write(slice.name, targetVer.x, targetVer.y, 'black', 30, 'Arial', dir, 0.7);
+    }
+
+    _dirToVertex(vFrom, vTo) {
+        return Gmt.cartesianToPolar(vFrom.x - vTo.x, vFrom.y - vTo.y).phi;
     }
 
     drawPointer(cw) {
