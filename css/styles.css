@@ -58,3 +58,24 @@
 .option-add-holder {
     width: calc(100% - 10px);
 }
+
+.overlay-button {
+    position: absolute;
+    height: 4vh;
+    width: 4vh;
+    font-size: 3vh;
+    cursor: pointer;
+    opacity: 0.7;
+    filter: drop-shadow(3px 3px 4px #4444dd);
+}
+
+#save-overlay-button {
+    margin-left: 1vh;
+    margin-top: 1vh;
+}
+
+#load-overlay-button {
+    margin-left: 6vh;
+    margin-top: 1vh;
+}
+

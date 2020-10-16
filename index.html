@@ -10,8 +10,11 @@
         <!-- SRC -->
         <script src="js/src/spinner.js"></script>
         <script src="js/src/painter.js"></script>
+        <script src="js/src/saverLoader.js"></script>
     </head>
     <body>
+        <div class='overlay-button' id='save-overlay-button' onclick='SaverLoader.save()'>&#128190;</div>
+        <div class='overlay-button' id='load-overlay-button' onclick='SaverLoader.load()'>&#128193;</div>
         <div id='home'>
             <div id='canvas-home'></div>
             <div id='options-home'></div>
