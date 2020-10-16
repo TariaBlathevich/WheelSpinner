@@ -4,7 +4,7 @@
  * Collection of tools that can be used to create games with JS and HTML5 canvas
  * @author Lukasz Kaszubowski
  * @see https://github.com/matszach
- * @version 1.0
+ * @version 1.1
  */
 const Gmt = {
 
@@ -1698,7 +1698,18 @@ const Gmt = {
         }
 
         // writes text 
-        write(content, x, y, color, size, font) {
+        write(content, x, y, color, size, font, rotation, alpha) {
+            
+            // context settings changes
+            this.context.save();
+            this.context.globalAlpha = alpha || 1
+            this.context.translate(
+                x * this.unit + this.offsetX,
+                y * this.unit + this.offsetY,
+            ); 
+            this.context.rotate(rotation || 0);
+                
+            // writing proper
             this.setFillStyle(color);
             size = size || 12;      // default size
             font = font || 'Arial'; // default font
@@ -1708,6 +1719,9 @@ const Gmt = {
                 x * this.unit + this.offsetX,
                 y * this.unit + this.offsetY
             );
+
+            // context setting restore
+            this.context.restore();
             return this;
         }
 
