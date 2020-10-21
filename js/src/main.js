@@ -1,10 +1,7 @@
 const cw = new Gmt.CanvasWrapper('canvas-home');
-const spinner = new SpinnerHandler('options-home');
+const spinner = new SpinnerHandler('options-home').init();
 const painter = new Painter();
-
-$('.canvas-home-canvas').on('click', () => {
-    spinner.spin();
-});
+const saverLoader = new SaverLoader(spinner);
 
 new Gmt.Loop(62, loop => {
     spinner.rotate();

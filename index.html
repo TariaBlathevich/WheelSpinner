@@ -4,6 +4,7 @@
         <!-- STYLES -->
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/pmodal.css">
         <!-- LIB -->
         <script src="js/lib/gmt.js"></script>
         <script src="js/lib/jquery.js"></script>
@@ -13,8 +14,8 @@
         <script src="js/src/saverLoader.js"></script>
     </head>
     <body>
-        <div class='overlay-button' id='save-overlay-button' onclick='SaverLoader.save()'>&#128190;</div>
-        <div class='overlay-button' id='load-overlay-button' onclick='SaverLoader.load()'>&#128193;</div>
+        <div class='overlay-button' id='save-overlay-button' onclick='saverLoader.openSave()'>&#128190;</div>
+        <div class='overlay-button' id='load-overlay-button' onclick='saverLoader.openLoad()'>&#128193;</div>
         <div id='home'>
             <div id='canvas-home'></div>
             <div id='options-home'></div>

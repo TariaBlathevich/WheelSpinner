@@ -5,11 +5,19 @@ class SpinnerHandler {
         this.options = [];
         this._generateDefault();
         this.renderOptions();
-
         this.rotation = {
             dir: 0,
             vel: 0
         };
+    }
+
+    init() {
+        let spinner = this;
+        $('.canvas-home-canvas')
+        .on('click', () => spinner.spin())
+        .on('dblclick', () => spinner.stop())
+        .on('contextmenu', () => false);
+        return this;
     }
 
     rotate() {
@@ -21,6 +29,10 @@ class SpinnerHandler {
 
     spin() {
         this.rotation.vel = Gmt.randFloat(0.27, 0.38);
+    }
+
+    stop() {
+        this.rotation.vel = 0;
     }
 
     _generateDefault() {
@@ -56,7 +68,7 @@ class SpinnerHandler {
                 <input type='number' value='${option.weight}' class='option-weight-holder' id='option-weight-holder-${index}'
                     oninput="WeightFix.onInput(this)" onfocusout="WeightFix.onFocusOut(this)" />
                 <input type='color' value='${option.color}' class='option-color-holder' id='option-color-holder-${index}'/>
-                <input type='button' value='X' class='option-delete-holder' id='option-delete-holder-${index}'/>
+                <input type='submit' value='\u2715' class='option-delete-holder' id='option-delete-holder-${index}'/>
             </div>
         `);
         $(`#option-name-holder-${index}`).change(() => {option.name = $(`#option-name-holder-${index}`).val()});
@@ -68,7 +80,7 @@ class SpinnerHandler {
     _renderAddButton() {
         $(this.homeId).append(`
             <div id='option-body-next' class='option-body'>
-                <input type='button' value='ADD' class='option-add-holder' id='option-add-holder'/>
+                <input type='submit' value='ADD' class='option-add-holder' id='option-add-holder'/>
             </div>
         `);
         $(`#option-add-holder`).click(() => this.addOption());

@@ -1,0 +1,45 @@
+#pmodal-outer-body {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+#pmodal-inner-body {
+    margin: 4vh;
+    width: calc(100% - 8vh);
+    height: calc(100% - 8vh);
+    background-color: #111;
+    opacity: 0.9;
+}
+
+#pmodal-top-bar {
+    height: 5vh;
+    font-size: 4vh;
+    background-color: #333;
+}
+
+#pmodal-top-bar * {
+    display: block;
+    float: left;
+    align-content: center;
+    text-align: center;
+}
+
+#pmodal-title-span {
+    width: calc(100% - 5vh);
+}
+
+#pmodla-close-span {
+    width: 5vh;
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+
+#pmodla-close-span:hover {
+    background-color: #d00;
+    height: 100%;
+    color: #000;
+}
