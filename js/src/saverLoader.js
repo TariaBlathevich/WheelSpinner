@@ -55,10 +55,10 @@ class SaverLoader {
     _renderSave() {
         this._renderPModal('Save your option set as ... ', `
             <div class='pmodal-full-width-div'>
-                <input id='new-state-name-input' value='my option set ${new Date().toLocaleDateString()}'/>
+                <input id='new-state-name-input' value='${new Date().toLocaleDateString()}'/>
             </div>
             <div class='pmodal-full-width-div'>
-                <input id='new-state-confirm' type='submit' value='confirm' onclick='saverLoader.confirmSave()'/>
+                <input id='new-state-confirm' type='submit' value='CONFIRM' onclick='saverLoader.confirmSave()'/>
             </div>
         `);
     }

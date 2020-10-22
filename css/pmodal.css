@@ -85,7 +85,7 @@
     width: calc(25% - 2vh);
 }
 
-.pmodal-option-name-span:hover 
+.pmodal-option-name-span:hover, 
 .pmodal-option-delete-span:hover,
 #new-state-confirm:hover {
     filter: brightness(1.3);
