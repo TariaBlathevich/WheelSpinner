@@ -29,7 +29,7 @@ class SaverLoader {
     delete(index) {
         this.states = this.states.filter((e, i) => i !== index);
         this._save();
-        this._renderLoad();
+        $('#pmodal-content').html(this._getStatesToLoadHTML());
     }
 
     openSave() {
@@ -38,7 +38,6 @@ class SaverLoader {
     }
 
     _renderPModal(title, innerHTML) {
-        this.close();
         $('body').append(`
             <div id="pmodal-outer-body">
                 <div id="pmodal-inner-body">
@@ -46,19 +45,20 @@ class SaverLoader {
                         <span id="pmodal-title-span">${title}</span>
                         <span id="pmodla-close-span" onclick="saverLoader.cancel()">\u2715</span>
                     </div>
-                    <div id="pmodal-content">
-                        ${innerHTML}
-                    </div>
+                    <div id="pmodal-content">${innerHTML}</div>
                 </div>
             </div>
         `);
+        $('#pmodal-outer-body').hide().fadeIn(300);
     }
 
     _renderSave() {
-        this._renderPModal('Save an option set', `
-            <div>
-                <input id='new-state-name-input' value='my option set'/>
-                <input type='submit' value='confirm' onclick='saverLoader.confirmSave()'/>
+        this._renderPModal('Save your option set as ... ', `
+            <div class='pmodal-full-width-div'>
+                <input id='new-state-name-input' value='my option set ${new Date().toLocaleDateString()}'/>
+            </div>
+            <div class='pmodal-full-width-div'>
+                <input id='new-state-confirm' type='submit' value='confirm' onclick='saverLoader.confirmSave()'/>
             </div>
         `);
     }
@@ -76,18 +76,22 @@ class SaverLoader {
     }
 
     _renderLoad() {
-        let innerHtml = '<div>';
+        this._renderPModal('Choose an option set', 
+            `<div>${this._getStatesToLoadHTML()}</div>`
+        );
+    }
+
+    _getStatesToLoadHTML() {
+        let html = '';
         this.states.forEach((s, i) => {
-            innerHtml += `
-                <div onclick='saverLoader.confirmLoad(${i})'>
-                    ${s.name}
+            html += `
+                <div class='pmodal-full-width-div'>
+                    <span class='pmodal-option-name-span' onclick='saverLoader.confirmLoad(${i})'>${s.name}</span>
+                    <input class='pmodal-option-delete-span' type='button' onclick='saverLoader.delete(${i})' value='\u2715'/>
                 </div>
-                <div onclick='saverLoader.delete(${i})'>
-                    \u2715
-                </div>`
+            `;
         });
-        innerHtml += '</div>';
-        this._renderPModal('Load an option set', innerHtml);
+        return html;
     }
 
     confirmLoad(index) {

@@ -1,6 +1,6 @@
 #pmodal-outer-body {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     top: 0px;
     width: 100%;
     height: 100%;
@@ -10,9 +10,10 @@
 #pmodal-inner-body {
     margin: 4vh;
     width: calc(100% - 8vh);
-    height: calc(100% - 8vh);
+    max-height: calc(100% - 8vh);
     background-color: #111;
     opacity: 0.9;
+    padding-bottom: 1vh;
 }
 
 #pmodal-top-bar {
@@ -30,16 +31,62 @@
 
 #pmodal-title-span {
     width: calc(100% - 5vh);
+    overflow: hidden;
 }
 
 #pmodla-close-span {
     width: 5vh;
     transition-duration: 300ms;
     cursor: pointer;
+    height: 100%;
+    line-height: 5.2vh;
 }
 
 #pmodla-close-span:hover {
     background-color: #d00;
-    height: 100%;
     color: #000;
+}
+
+.pmodal-full-width-div {
+    margin: 1vh;
+    width: calc(100% - 2vh);
+    height: 5vh;
+    text-align: center;
+}
+
+.pmodal-full-width-div * {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition-duration: 300ms;
+    height: 5vh;
+    vertical-align: middle;
+    margin: 0.5vh;
+    text-align: center;
+    font-size: 3.5vh;
+    line-height: 5vh;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+#new-state-name-input {
+    cursor: text;
+}
+
+.pmodal-option-name-span {
+    display: inline-block;
+    width: calc(75% - 1vh);
+} 
+
+.pmodal-option-delete-span {
+    width: calc(25% - 2vh);
+}
+
+.pmodal-option-name-span:hover 
+.pmodal-option-delete-span:hover,
+#new-state-confirm:hover {
+    filter: brightness(1.3);
 }

@@ -14,8 +14,8 @@ class SpinnerHandler {
     init() {
         let spinner = this;
         $('.canvas-home-canvas')
-        .on('click', () => spinner.spin())
-        .on('dblclick', () => spinner.stop())
+        .on('click tap', () => spinner.spin())
+        .on('dblclick doubletap', () => spinner.stop())
         .on('contextmenu', () => false);
         return this;
     }
