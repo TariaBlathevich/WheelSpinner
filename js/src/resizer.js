@@ -1,7 +1,9 @@
 class Resizer {
 
-    constructor(canvasWrapper) {
+    constructor(canvasWrapper, painter, spinner) {
         this.cw = canvasWrapper;
+        this.painter = painter;
+        this.spinner = spinner;
         this.isToggled = false;
     }
 
@@ -15,17 +17,39 @@ class Resizer {
 
     _toggleOn() {
         this.isToggled = true;
-        $('#options-home').hide().height('0%');
-        $('#canvas-home').height('100%');
-        this.cw.refit();
+        let r = this;
+        this.animationThread(20, 15, i => {
+            $('#options-home').css({height: `${50 - i * 2.5}%`, opacity: 1 - i * 0.05});
+            $('#canvas-home').css({height: `${50 + i * 2.5}%`});
+            r.refit();
+        });
     }
+    
 
     _toggleOf() {
         this.isToggled = false;
-        $('#options-home').show().height('50%');
-        $('#canvas-home').height('50%');
+        let r = this;
+        this.animationThread(20, 15, i => {
+            $('#options-home').css({height: `${i * 2.5}%`, opacity: i * 0.05});
+            $('#canvas-home').css({height: `${100 - i * 2.5}%`});
+            r.refit();
+        });
+    }
+
+    refit() {
         this.cw.refit();
-        
+        this.painter.paint(0, this.cw, this.spinner);
+    }
+
+    animationThread(frames, interval, funct) {
+        let i = 0;
+        let animation = setInterval(() => {
+            i++;
+            funct(i);
+            if(i === frames) {
+                clearInterval(animation);
+            }
+        }, interval);
     }
 
 }
