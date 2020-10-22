@@ -67,15 +67,26 @@
     cursor: pointer;
     opacity: 0.7;
     filter: drop-shadow(3px 3px 4px #4444dd);
+    transition-duration: 300ms;
+}
+
+.overlay-button:hover {
+    filter: drop-shadow(5px 5px 10px #6666ff);
+    transform: scale(1.1);
 }
 
 #save-overlay-button {
-    margin-left: 1vh;
-    margin-top: 1vh;
+    left: 1vh;
+    top: 1vh;
 }
 
 #load-overlay-button {
-    margin-left: 6vh;
-    margin-top: 1vh;
+    left: 6vh;
+    top: 1vh;
+}
+
+#resize-overlay-button {
+    right: 1vh;
+    top: 1vh;
 }
 
