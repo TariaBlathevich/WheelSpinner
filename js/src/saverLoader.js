@@ -87,7 +87,7 @@ class SaverLoader {
             html += `
                 <div class='pmodal-full-width-div'>
                     <span class='pmodal-option-name-span' onclick='saverLoader.confirmLoad(${i})'>${s.name}</span>
-                    <input class='pmodal-option-delete-span' type='button' onclick='saverLoader.delete(${i})' value='\u2715'/>
+                    <input class='pmodal-option-delete-span' type='button' onclick='saverLoader.delete(${i})' value='${EMOJI.DELETE}'/>
                 </div>
             `;
         });

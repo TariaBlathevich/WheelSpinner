@@ -43,15 +43,18 @@
 }
 
 .option-weight-holder {
-    width: 20%;
+    width: 10%;
 }
 
 .option-color-holder {
-    width: 20%;
+    width: calc(20% - 60px);
 }
 
+.option-up-holder,
+.option-down-holder,
+.option-clone-holder,
 .option-delete-holder {
-    width: calc(10% - 40px);
+    width: 5%;
     height: 4.3vh;
 }
 

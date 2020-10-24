@@ -49,6 +49,35 @@ class SpinnerHandler {
         this.renderOptions();
     }
 
+    upOption(index) {
+        if(this._swapOptions(index - 1, index)) {
+            this.renderOptions();
+        }
+    }
+
+    downOption(index) {
+        if(this._swapOptions(index, index + 1)) {
+            this.renderOptions();
+        }
+    }
+
+    _swapOptions(i, j) {
+        if(i < 0 || j > this.options.length - 1) {
+            return false;
+        } else {
+            let temp = this.options[i];
+            this.options[i] = this.options[j];
+            this.options[j] = temp;
+            return true;
+        }
+    }
+
+    cloneOption(index) {
+        let newOption = this.options[index].clone();
+        this.options.splice(index, 0, newOption);
+        this.renderOptions();
+    }
+
     _randColor() {
         let colorString = '#';
         Gmt.iter1D(6, i => colorString += Gmt.choice('0123456789abcdef'));
@@ -68,12 +97,18 @@ class SpinnerHandler {
                 <input type='number' value='${option.weight}' class='option-weight-holder' id='option-weight-holder-${index}'
                     oninput="WeightFix.onInput(this)" onfocusout="WeightFix.onFocusOut(this)" />
                 <input type='color' value='${option.color}' class='option-color-holder' id='option-color-holder-${index}'/>
-                <input type='submit' value='\u2715' class='option-delete-holder' id='option-delete-holder-${index}'/>
+                <input type='submit' value='${EMOJI.UP}' class='option-up-holder' id='option-up-holder-${index}'/>
+                <input type='submit' value='${EMOJI.DOWN}' class='option-down-holder' id='option-down-holder-${index}'/>
+                <input type='submit' value='${EMOJI.CLONE}' class='option-clone-holder' id='option-clone-holder-${index}'/>
+                <input type='submit' value='${EMOJI.DELETE}' class='option-delete-holder' id='option-delete-holder-${index}'/>
             </div>
         `);
         $(`#option-name-holder-${index}`).change(() => {option.name = $(`#option-name-holder-${index}`).val()});
         $(`#option-weight-holder-${index}`).change(() => {option.weight = $(`#option-weight-holder-${index}`).val()});
         $(`#option-color-holder-${index}`).change(() => {option.color = $(`#option-color-holder-${index}`).val()});
+        $(`#option-up-holder-${index}`).click(() => this.upOption(index));
+        $(`#option-down-holder-${index}`).click(() => this.downOption(index));
+        $(`#option-clone-holder-${index}`).click(() => this.cloneOption(index));
         $(`#option-delete-holder-${index}`).click(() => this.deleteOption(index));
     }
 
@@ -95,6 +130,14 @@ class Option {
         this.name = name;
         this.weight = weight;
         this.color = color;
+    }
+
+    clone() {
+        return new Option(
+            this.name, 
+            this.weight,
+            this.color
+        );
     }
 }
 
