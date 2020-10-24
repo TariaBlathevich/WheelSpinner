@@ -14,11 +14,13 @@
         <script src="js/src/painter.js"></script>
         <script src="js/src/saverLoader.js"></script>
         <script src="js/src/resizer.js"></script>
+        <script src="js/src/fullscreen.js"></script>
     </head>
     <body>
-        <div class='overlay-button' id='save-overlay-button' onclick='saverLoader.openSave()'>&#128190;</div>
-        <div class='overlay-button' id='load-overlay-button' onclick='saverLoader.openLoad()'>&#128193;</div>
-        <div class='overlay-button' id='resize-overlay-button' onclick='resizer.toggle()'>&#128270;</div>
+        <div class='overlay-button' id='save-overlay-button' onclick='saverLoader.openSave()'>💾</div>
+        <div class='overlay-button' id='load-overlay-button' onclick='saverLoader.openLoad()'>📁</div>
+        <div class='overlay-button' id='fullscreen-overlay-button' onclick='fullscreen.toggle()'>🖥️</div>
+        <div class='overlay-button' id='resize-overlay-button' onclick='resizer.toggle()'>🔎</div>
         <div id='home'>
             <div id='canvas-home'></div>
             <div id='options-home'></div>
